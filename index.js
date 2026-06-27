@@ -5,7 +5,6 @@ import envConfig from "./configs/envConfig.js";
 import dotenv from "dotenv"
 import bookRoutes from "./Router/book.route.js"
 import userRoutes from "./Router/user.route.js"
-import errorHandler from "./middlewares/errorHandler.js";
 
 
 dotenv.config();
@@ -13,7 +12,6 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(errorHandler)
 const PORT = envConfig.PORT || 3000;
 app.get('/', async (req,res) => {
     try {

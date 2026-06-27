@@ -1,39 +1,34 @@
 import { body } from "express-validator";
 
-export const validateUser = (req,res,next) => {
-    const {name,email,password} = req.body;
+export const validateUser = [
+    body("name")
+        .notEmpty()
+        .withMessage("Name is required"),
 
-    if(!name || !email || !password){
-        return res.status(400).json({
-            success : false,
-            message :"All fields are requied by user",
-        });
-    }
-    
-    if(password.length < 8){
-        return res.status(400).json({
-            success : false,
-            message : "password must contain atleast 8 characters"
-        });
-    }
-    next();
-}
+    body("email")
+        .isEmail()
+        .withMessage("Valid email is required"),
 
-export const validateBook = (req,res,next) => {
-    const {title,author,price,category} = req.body;
+    body("password")
+        .isLength({ min: 8 })
+        .withMessage("Password must contain at least 8 characters"),
+];
 
-    if(!title || !author || !price || !category){
-        return res.status(400).json({
-            success : false,
-            message : "All fields are required "
-        });
-    }
 
-    if(price < 0){
-        return res.status(400).json({
-            success : false,
-            message : "Price must be greater than 0"
-        });
-    }
-    next();
-}
+export const validateBook = [
+    body("title")
+        .notEmpty()
+        .withMessage("Title is required"),
+
+    body("author")
+        .notEmpty()
+        .withMessage("Author is required"),
+
+    body("price")
+        .isFloat({ min: 0 })
+        .withMessage("Price must be greater than 0"),
+
+    body("category")
+        .notEmpty()
+        .withMessage("Category is required"),
+];
