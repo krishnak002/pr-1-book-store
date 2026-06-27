@@ -93,4 +93,5 @@ This project demonstrates:
 
 ## 📽️ Explaination Video
 
-* 
+* https://drive.google.com/drive/folders/1QxyyaDHbl8529IZzY4ClpBqZx7dTBfmb?usp=drive_link
+  
